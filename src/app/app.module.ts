@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { WelcomeComponent } from './products/welcome.component';
 import { RouterModule } from '@angular/router';
 import { ProductModule } from './products/product.module';
-import { UsersModule } from './products/users/users.module';
+import { UsersModule } from './users/users.module';
 
 
 @NgModule({
