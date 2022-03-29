@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { IProduct } from "./poduct";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { catchError, tap, throwError } from "rxjs";
-import { IUser } from "../users/service";
 
 @Injectable({
     providedIn: 'root'
