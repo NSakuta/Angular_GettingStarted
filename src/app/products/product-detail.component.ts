@@ -22,6 +22,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     selectedProduct: IProduct | undefined;
 
+    isDataProvided: boolean = true;
+
+
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 public productService: ProductService) {
@@ -35,22 +38,27 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
         this.subscription = this.productService.productData$.subscribe(
             data => { 
-                this.products = data;    
-                this.selectedProduct = this.products.find(el => el.productId == id);
-                this.product = this.selectedProduct;
-            
-            if (this.product == null) {
-                this.productService.getProducts().subscribe({
-                    next: data => {
-                        this.products = data;
-                        this.selectedProduct = this.products.find(el => el.productId == id);
-                        this.product = this.selectedProduct;
-                        }
-                    })
+                if(data.length === 0) {
+                    this.isDataProvided = false;
+                } else {
+                    this.products = data;
+                    this.selectedProduct = this.products.find(el => el.productId == id);
+                    this.product = this.selectedProduct;
+                    this.isDataProvided = true;
                 }
             }
         )
-    }
+        if(this.isDataProvided === false) {
+            this.productService.getProducts().subscribe({
+                next: data => {
+                    this.products = data;
+                    this.selectedProduct = this.products.find(el => el.productId == id);
+                    this.product = this.selectedProduct;
+                    }
+                })
+            }    
+        }
+    
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
