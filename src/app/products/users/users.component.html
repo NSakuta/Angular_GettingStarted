@@ -1,0 +1,17 @@
+<div class='card'>
+    <div class='card-header'>
+      {{pageTitle}}
+    </div>
+  
+    <div class='card-body'
+         *ngIf='users'>
+         <div *ngFor='let user of users'>
+            <div class='row my-5'>
+                <div class='col-md-8'>
+                  <div class='row'>
+                    <a class='col-md-8' [routerLink]="['/users', user.id]">{{user.name}}</a>
+                  </div>      
+                </div>
+            </div>
+         </div>
+      
