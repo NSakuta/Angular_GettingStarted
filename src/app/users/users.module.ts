@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UserDetailComponent } from './user-detail.component';
 import { UsersComponent } from './users.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -11,12 +12,11 @@ import { UsersComponent } from './users.component';
       UsersComponent
     ],
     imports: [
-        CommonModule,
-        FormsModule,
         RouterModule.forChild([
             {path: 'users', component: UsersComponent},
             {path: 'users/:id', component: UserDetailComponent},
           ]),
+        SharedModule
     ]
 })
 
